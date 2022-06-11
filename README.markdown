@@ -1,53 +1,53 @@
-> This repo is not maintained and most of the code in here is probably deprecated. 
+> Это репо не поддерживается, и большая часть кода здесь, вероятно, устарела.
 
 
-# Websocket Module for Ejabberd
+# Модуль Websocket для Ejabberd
 
-This is a module that adds websocket support for the [ejabberd](http://www.ejabberd.im/) XMPP server. It's a more elegant, modern and faster replacement to Bosh.
+Это модуль, который добавляет поддержку веб-сокетов для XMPP-сервера [ejabberd](http://www.ejabberd.im/). Это более элегантная, современная и быстрая замена Bosh.
 
-It is an implementation of the [XMPP Over Websocket Draft](http://tools.ietf.org/html/draft-moffitt-xmpp-over-websocket-00) proposed by Jack Moffitt and Eric Cstari. The Websocket implementation is based on this [draft specification](http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-03).
+Это реализация [проекта XMPP Over Websocket] (http://tools.ietf.org/html/draft-moffitt-xmpp-over-websocket-00), предложенного Джеком Моффиттом и Эриком Кстари. Реализация Websocket основана на этой [черновой спецификации] (http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-03).
 
-**You need to use the apt version of ejabberd, as the binary install comes with an old version of erlang. **
+** Вам необходимо использовать подходящую версию ejabberd, так как бинарная установка поставляется со старой версией erlang. **
 
-## Install
+## Установить
 
-### Build
+### Строить
 <code>./build.sh</code>
 
-### Install
+### Установить
 <code>cp ebin/*.beam /path/to/ejabberd/lib/ebin/</code>
 
-### Configure
-In the listeners section add the following line:
+### Настроить
+В разделе слушателей добавьте следующую строку:
 
 <code>{5288, ejabberd_websocket, [{request_handlers, [{["ws-xmpp"], mod_websocket}]}]},</code>
 
-Make sure you also add this line in the <code>Modules</code>
+Убедитесь, что вы также добавили эту строку в <code>Modules</code>.
 
 <code>{mod_websocket, []}</code>
 
 
-## Usage
+## Применение
 
-Just connect to the websocket using your browser's API, and send your XMPP traffic over it.
+Просто подключитесь к веб-сокету с помощью API вашего браузера и отправьте через него свой XMPP-трафик.
 
-You may find it convenient to use directly [Strophejs](https://github.com/metajack/strophejs) as it's a full XMPP library in Javascript. However, you will have to use [this branch](https://github.com/superfeedr/strophejs) for now, as it adds support for websocket, as the underlying protocol (instead of Bosh).
+Возможно, вам будет удобно использовать напрямую [Strophejs] (https://github.com/metajack/strophejs), так как это полная библиотека XMPP на Javascript. Однако на данный момент вам придется использовать [эту ветку] (https://github.com/superfeedr/strophejs), поскольку она добавляет поддержку веб-сокета в качестве базового протокола (вместо Bosh).
 
-To setup a connection :
-<code>
-	// WS_SERVICE should be http://host.tld:5288/ws-xmpp, based on the configuration you chose.
-	connection = new Strophe.Connection({protocol: new Strophe.Websocket(WS_SERVICE) });
-</code>
+Чтобы настроить соединение:
+<код>
+// WS_SERVICE должен быть http://host.tld:5288/ws-xmpp в зависимости от выбранной вами конфигурации.
+соединение = новый Strophe.Connection({протокол: новый Strophe.Websocket(WS_SERVICE)});
+</код>
 
 
-## TODO
+## СДЕЛАТЬ
 
-The most 'urgent' thing to do is to provide fallback mechanisms in this module. For example, support for [socket.io](http://socket.io/) would be amazing, as erlang has its own [implementation](https://github.com/yrashk/socket.io-erlang). Feel free to fork and make it better!
+Самое «срочное» — это предусмотреть в этом модуле резервные механизмы. Например, поддержка [socket.io](http://socket.io/) была бы замечательной, поскольку у erlang есть своя [реализация] (https://github.com/yrashk/socket.io-erlang). Не стесняйтесь раскошелиться и сделать его лучше!
 
-## Thank you
+## Спасибо
 
-Sponsored by [Superfeedr](http://superfeedr.com). Special thanks to [Nathan](http://unclenaynay.com/) for his awesome work, [Jack](http://metajack.im/) for his help.
+При поддержке [Superfeedr](http://superfeedr.com). Особая благодарность [Натану] (http://unclenaynay.com/) за его прекрасную работу, [Джеку] (http://metajack.im/) за помощь.
 
-## License
+## Лицензия
 
-See [License.markdown](./ejabberd-websockets/blob/master/License.markdown).
+См. [License.markdown](./ejabberd-websockets/blob/master/License.markdown).
